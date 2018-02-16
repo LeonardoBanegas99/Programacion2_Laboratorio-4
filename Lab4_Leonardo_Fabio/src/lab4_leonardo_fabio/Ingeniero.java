@@ -8,7 +8,7 @@ public class Ingeniero extends SeresVivos{
   
     private String correo;
     private String nombre_usuario;
-    private ArrayList idiomas = new ArrayList();
+    private String idiomas;
     private String contraseña;
     private int cantidad_cafe;
     private String fecha_naciomiento;
@@ -17,10 +17,11 @@ public class Ingeniero extends SeresVivos{
         super();
     }
 
-    public Ingeniero(String correo, String nombre_usuario, String contraseña, int cantidad_cafe, String fecha_naciomiento, String nombre, String grupo_sanguineo, String sexo, String altura, String peso) {
+    public Ingeniero(String correo, String nombre_usuario, String idiomas , String contraseña, int cantidad_cafe, String fecha_naciomiento, String nombre, String grupo_sanguineo, String sexo, String altura, String peso) {
         super(nombre, grupo_sanguineo, sexo, altura, peso);
         this.correo = correo;
         this.nombre_usuario = nombre_usuario;
+        this.idiomas = idiomas;
         this.contraseña = contraseña;
         this.cantidad_cafe = cantidad_cafe;
         this.fecha_naciomiento = fecha_naciomiento;
@@ -42,11 +43,11 @@ public class Ingeniero extends SeresVivos{
         this.nombre_usuario = nombre_usuario;
     }
 
-    public ArrayList getIdiomas() {
+    public String getIdiomas() {
         return idiomas;
     }
 
-    public void setIdiomas(ArrayList idiomas) {
+    public void setIdiomas(String idiomas) {
         this.idiomas = idiomas;
     }
 
