@@ -1,10 +1,14 @@
 package lab4_leonardo_fabio;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Lab4_Leonardo_Fabio {
 
     private Scanner sc = new Scanner(System.in);
+    private ArrayList<SeresVivos> seresvivos = new ArrayList();
+    private ArrayList<Ingeniero> ingenieros = new ArrayList();
+    private ArrayList<MediosdeTransporte> mediosdeTransportes = new ArrayList();
 
     public static void main(String[] args) {
         new Lab4_Leonardo_Fabio();
