@@ -24,10 +24,12 @@ public class GorilaMontaña extends Primate{
 
     @Override
     public String toString() {
-        return "Gorila de Montaña{" + "IQ=" + IQ + '}';
+        return super.toString() +"Gorila de Montaña{" + "IQ=" + IQ + '}';
     }
-    
-    
+    @Override
+    public double LlenarComida(){
+        return 100;
+    }
     
     
 }

@@ -22,7 +22,13 @@ public class Cohete extends Espacial {
 
     @Override
     public String toString() {
-        return "Cohete{" + "numseparaciones=" + numseparaciones + '}';
+        return super.toString() + "Cohete{" + "numseparaciones=" + numseparaciones + '}';
     }
+
     
+
+    @Override
+    public boolean llenarTanque() {
+        return true;
+    }
 }

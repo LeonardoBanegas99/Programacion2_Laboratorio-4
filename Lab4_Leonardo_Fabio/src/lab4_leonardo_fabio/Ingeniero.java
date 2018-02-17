@@ -77,11 +77,13 @@ public class Ingeniero extends SeresVivos{
 
     @Override
     public String toString() {
-        return "Ingeniero{" + "correo=" + correo + ", nombre_usuario=" + nombre_usuario + ", idiomas=" + idiomas + ", contrase\u00f1a=" + contraseña + ", cantidad_cafe=" + cantidad_cafe + ", fecha_naciomiento=" + fecha_naciomiento + '}';
+        return super.toString() + "Ingeniero{" + "correo=" + correo + ", nombre_usuario=" + nombre_usuario + ", idiomas=" + idiomas + ", contrase\u00f1a=" + contraseña + ", cantidad_cafe=" + cantidad_cafe + ", fecha_naciomiento=" + fecha_naciomiento + '}';
     }
 
-    
-    
+    @Override
+    public void llenarCafe(){
+        setCantidad_cafe(100);
+    }
     
     
     

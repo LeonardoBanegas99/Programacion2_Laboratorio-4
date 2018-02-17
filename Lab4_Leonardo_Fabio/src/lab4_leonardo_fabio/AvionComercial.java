@@ -32,7 +32,13 @@ public class AvionComercial extends AereoNormal {
 
     @Override
     public String toString() {
-        return "AvionComercial{" + "numpasajeros=" + numpasajeros + ", pilotoauto=" + pilotoauto + '}';
+        return super.toString()+"AvionComercial{" + "numpasajeros=" + numpasajeros + ", pilotoauto=" + pilotoauto + '}';
     }
+
     
+    
+    @Override
+    public boolean llenarTanque() {
+        return true;
+    }
 }

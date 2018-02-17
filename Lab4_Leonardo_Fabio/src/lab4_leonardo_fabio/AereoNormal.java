@@ -1,6 +1,6 @@
 package lab4_leonardo_fabio;
 
-public class AereoNormal extends MediosdeTransporte{
+public class AereoNormal extends MediosdeTransporte {
 
     private String gasolina;
     private String paispartida;
@@ -42,7 +42,13 @@ public class AereoNormal extends MediosdeTransporte{
 
     @Override
     public String toString() {
-        return "AereoNormal{" + "gasolina=" + gasolina + ", paispartida=" + paispartida + ", paisllegada=" + paisllegada + '}';
+        return super.toString()+"AereoNormal{" + "gasolina=" + gasolina + ", paispartida=" + paispartida + ", paisllegada=" + paisllegada + '}';
+    }
+
+    
+
+    public boolean llenarTanque() {
+        return true;
     }
 
 }

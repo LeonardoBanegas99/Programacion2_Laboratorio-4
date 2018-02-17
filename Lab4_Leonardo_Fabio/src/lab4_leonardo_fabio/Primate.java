@@ -54,10 +54,12 @@ public class Primate extends SeresVivos {
 
     @Override
     public String toString() {
-        return "Primate{" + "Area=" + Area + ", cantidad_contido=" + cantidad_comida + ", planeta=" + planeta + ", lugar_naciomiento=" + lugar_naciomiento + '}';
+        return super.toString() +"Primate{" + "Area=" + Area + ", cantidad_contido=" + cantidad_comida + ", planeta=" + planeta + ", lugar_naciomiento=" + lugar_naciomiento + '}';
     }
     
-    
+    public double LlenarComida(){
+        return 0;
+    }
 
     
 }

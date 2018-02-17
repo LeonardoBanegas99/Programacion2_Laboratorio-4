@@ -1,6 +1,7 @@
 package lab4_leonardo_fabio;
 
-public class Helicoptero extends AereoNormal{
+public class Helicoptero extends AereoNormal {
+
     private int numhelice;
     private int numdepatas;
 
@@ -31,8 +32,14 @@ public class Helicoptero extends AereoNormal{
 
     @Override
     public String toString() {
-        return "Helicoptero{" + "numhelice=" + numhelice + ", numdepatas=" + numdepatas + '}';
+        return super.toString()+"Helicoptero{" + "numhelice=" + numhelice + ", numdepatas=" + numdepatas + '}';
     }
+
     
-    
+
+    @Override
+    public boolean llenarTanque() {
+        return true;
+    }
+
 }

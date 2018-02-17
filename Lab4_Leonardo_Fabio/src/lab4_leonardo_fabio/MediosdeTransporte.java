@@ -54,6 +54,10 @@ public class MediosdeTransporte {
     public String toString() {
         return "MediosdeTransporte{" + "tanquelleno=" + tanquelleno + ", distancia=" + distancia + ", altitud=" + altitud + ", primates=" + primates + '}';
     }
+
     
     
+    public boolean llenarTanque(){
+        return true;
+    }
 }

@@ -24,11 +24,12 @@ public class MonoBaboon extends Primate{
 
     @Override
     public String toString() {
-        return "MonoBaboon{" + "color=" + color + '}';
+        return super.toString() + "MonoBaboon{" + "color=" + color + '}';
     }
-    
-    
-    
+    @Override
+    public double LlenarComida(){
+        return 100;
+    }
     
     
     

@@ -1,6 +1,7 @@
 package lab4_leonardo_fabio;
 
-public class Espacial extends MediosdeTransporte{
+public class Espacial extends MediosdeTransporte {
+
     private String combustiblle;
     private String planetapartida;
     private String planetallegada;
@@ -41,10 +42,11 @@ public class Espacial extends MediosdeTransporte{
 
     @Override
     public String toString() {
-        return "Espacial{" + "combustiblle=" + combustiblle + ", planetapartida=" + planetapartida + ", planetallegada=" + planetallegada + '}';
+        return super.toString() + "Espacial{" + "combustiblle=" + combustiblle + ", planetapartida=" + planetapartida + ", planetallegada=" + planetallegada + '}';
     }
-    
-    
-    
-    
+
+    public boolean llenarTanque() {
+        return true;
+    }
+
 }

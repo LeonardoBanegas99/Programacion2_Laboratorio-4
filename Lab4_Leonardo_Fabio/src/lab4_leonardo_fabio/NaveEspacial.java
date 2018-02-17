@@ -22,7 +22,13 @@ public class NaveEspacial extends Espacial {
 
     @Override
     public String toString() {
-        return "NaveEspacial{" + "numpropulsores=" + numpropulsores + '}';
+        return super.toString()+"NaveEspacial{" + "numpropulsores=" + numpropulsores + '}';
     }
+
+   
     
+    @Override
+    public boolean llenarTanque() {
+        return true;
+    }
 }

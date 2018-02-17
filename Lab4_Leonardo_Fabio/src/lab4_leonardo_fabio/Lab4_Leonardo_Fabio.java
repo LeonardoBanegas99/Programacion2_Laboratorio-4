@@ -11,6 +11,8 @@ public class Lab4_Leonardo_Fabio {
     private ArrayList<Ingeniero> ingenieros = new ArrayList();
     private ArrayList<MediosdeTransporte> mediosdeTransportes = new ArrayList();
     private ArrayList<Viajes> viajes = new ArrayList();
+    private MediosdeTransporte medio = new MediosdeTransporte();
+    private SeresVivos sv = new SeresVivos();
 
     public static void main(String[] args) {
         new Lab4_Leonardo_Fabio();
@@ -22,7 +24,7 @@ public class Lab4_Leonardo_Fabio {
             System.out.println(""
                     + "1. LogIn\n"
                     + "2. Registro\n"
-                    + "3. Salir"
+                    + "3. Salir\n"
                     + "Ingrese que desea registrar: ");
             int opcion = sc.nextInt();
             switch (opcion) {
@@ -30,7 +32,7 @@ public class Lab4_Leonardo_Fabio {
                     logIn();
                     break;
                 case 2:
-                    registro();
+                    Registro();
                     break;
                 case 3:
                     System.exit(0);
@@ -48,11 +50,14 @@ public class Lab4_Leonardo_Fabio {
         System.out.println("Ingrese su contraseña: ");
         String contra = sc.next();
         for (int i = 0; i < ingenieros.size(); i++) {
-            if ((ingenieros.get(i).getCorreo().equals(correo)) && (ingenieros.get(i).getContraseña().equals(contra))) {
-                Ingeniero ing = ingenieros.get(i);
-                int pos = i;
-                menuIngeniero();
-                break;
+            if ((ingenieros.get(i).getCorreo().equals(correo))) {
+                if ((ingenieros.get(i).getContraseña().equals(contra))) {
+                    Ingeniero ing = ingenieros.get(i);
+                    int pos = i;
+                    ing.setCantidad_cafe(0);
+                    menuIngeniero(ing);
+                    break;
+                }
             }
         }
 
@@ -65,7 +70,9 @@ public class Lab4_Leonardo_Fabio {
                     + "1. Crear Medios Transportes\n"
                     + "2. Modificar Medios Transportes\n"
                     + "3. Eliminar Medios Transporte\n"
-                    + "4. Salir\n"
+                    + "4. Llenar Tanque\n"
+                    + "5. Imprime Datos de Medios de Transporte\n"
+                    + "6. Salir\n"
                     + "Ingrese que desea registrar: \n");
             int opcion = sc.nextInt();
             switch (opcion) {
@@ -180,6 +187,7 @@ public class Lab4_Leonardo_Fabio {
                             }
                             break;
                     }
+                    break;
                 case 2:
                     System.out.println("---Medios de Transporte---");
                     int contmedios = 1;
@@ -281,6 +289,24 @@ public class Lab4_Leonardo_Fabio {
                     mediosdeTransportes.remove(borrarpos);
                     break;
                 case 4:
+                    System.out.println("---Menu---");
+                    int contmed = 1;
+                    for (MediosdeTransporte mt : mediosdeTransportes) {
+                        System.out.println(contmed + ") " + mt);
+                        contmed++;
+                    }
+                    System.out.println("Elija Medio de Transporte para llenar Tanque");
+                    int selecmed = sc.nextInt() - 1;
+                    mediosdeTransportes.get(selecmed).setTanquelleno(medio.llenarTanque());
+                    break;
+                case 5:
+                    System.out.println("---Medios de Transporte---");
+                    int contme = 1;
+                    for (MediosdeTransporte me : mediosdeTransportes) {
+                        System.out.println(contme + ") " + me.toString());
+                    }
+                    break;
+                case 6:
                     System.exit(0);
                 default:
 
@@ -290,7 +316,7 @@ public class Lab4_Leonardo_Fabio {
         }
     }
 
-    private void menuIngeniero() {
+    private void menuIngeniero(Ingeniero ing) {
         char resp = 's';
         while (resp == 's' || resp == 'S') {
             System.out.println(""
@@ -305,8 +331,59 @@ public class Lab4_Leonardo_Fabio {
                     MenuMediosTransporte();
                     break;
                 case 2:
+                    System.out.println("1.Crear Primate\n"
+                            + "2. Modificar Primate\n"
+                            + "3. Eliminar Primates\n"
+                            + "4. Llenar Comida\n");
+                    int ele = sc.nextInt();
+                    switch (ele) {
+                        case 1:
+                            primate();
+                            break;
+                        case 2:
+                            modificarPrimate();
+                            break;
+                        case 3:
+                            eliminarPrimate();
+                            break;
+                        case 4:
+                            System.out.println("---Primates---");
+                            int contprimates = 1;
+                            int contmedios = 1;
+                            for (int i = 0; i < mediosdeTransportes.size(); i++) {
+                                for (int j = 0; j < mediosdeTransportes.get(i).getPrimates().size(); j++) {
+                                    System.out.println(contprimates + ") " + mediosdeTransportes.get(i).getPrimates() + " " + contmedios + ") " + mediosdeTransportes.get(i));
+                                    contprimates++;
+                                    contmedios++;
+                                }
+                            }
+                            System.out.println("Elegir Primate a Eliminar");
+                            int selecpri = sc.nextInt() - 1;
+                            System.out.println("Elegir Transporte donde se Encuentra: ");
+                            int selectransporte = sc.nextInt() - 1;
+                            mediosdeTransportes.get(selectransporte).getPrimates().get(selecpri).setCantidad_contido(sv.LlenarComida());
+                            break;
+                    }
                     break;
                 case 3:
+                    System.out.println("---Datos Personales---");
+                    System.out.println("1.Llenar Cafe\n");
+                    int ele2 = sc.nextInt();
+                    switch (ele2) {
+                        case 1:
+                            System.out.println("Llenando su Cafesito");
+                            sv.llenarCafe();
+                            if (ing.getCantidad_cafe() == 100) {
+                                System.out.println("Cafesito Llenado");
+                            }
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                        case 4:
+
+                    }
                     break;
                 case 4:
                     System.exit(0);
@@ -316,434 +393,8 @@ public class Lab4_Leonardo_Fabio {
             resp = sc.next().charAt(0);
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    public void Registro(){
+
+    public void Registro() {
         System.out.println("Ingrese su nombre: ");
         String nombre = sc.next();
         System.out.println("Ingrese su grupo Sanguineo: ");
@@ -766,10 +417,10 @@ public class Lab4_Leonardo_Fabio {
         int c_c = sc.nextInt();
         System.out.println("Fecha de nacimiento: ");
         String fecha_naciomiento = sc.next();
-        ingenieros.add(new Ingeniero(correo, usuario,idioma,contraseña, c_c, fecha_naciomiento, nombre, sanguineo, sexo, altura, peso));
+        ingenieros.add(new Ingeniero(correo, usuario, idioma, contraseña, c_c, fecha_naciomiento, nombre, sanguineo, sexo, altura, peso));
     }
-    
-    public void primate(){
+
+    public void primate() {
         System.out.println("Ingrese nombre: ");
         String nombre = sc.next();
         System.out.println("Ingrese grupo Sanguineo: ");
@@ -788,92 +439,109 @@ public class Lab4_Leonardo_Fabio {
         String planeta = sc.next();
         System.out.println("Ingrese su lugar de nacimiento: ");
         String l_nacimiento = sc.next();
-         System.out.println(""
-                    + "1. Agregar Mono Bobon\n"
-                    + "2. Agregar Gorila de Montaña\n"
-                    + "3. Salir"
-                    + "Ingrese que desea registrar: ");
-            int op = sc.nextInt();
-            switch (op) {
-                case 1:
-                    System.out.println("Ingrese su color");
-                    String color = sc.next();
-                    int cont = 1;
-                    for (MediosdeTransporte mt : mediosdeTransportes) {
-                        System.out.println(cont + ")" + mt);
-                        cont++;
-                    }
-                    System.out.println("Ingrese el medio de transporte donde quiere agregar el Mono Babon");
-                    int posi = sc.nextInt()-1;
-                    mediosdeTransportes.get(posi).getPrimates().add(new MonoBaboon(color, ares, c_comida, planeta, l_nacimiento, nombre, sanguineo, sexo, altura, peso));
-                    break;
-                case 2:
-                    System.out.println("Ingrese su IQ (130-139");
-                    int iq = sc.nextInt();
-                    while (iq<130 || iq>139) {
-                        System.out.println("Ingrese su IQ dentro del rango (130-139");
-                        iq = sc.nextInt();
-                    }
-                    int contt = 1;
-                    for (MediosdeTransporte mt : mediosdeTransportes) {
-                        System.out.println(contt + ")" + mt);
-                        contt++;
-                    }
-                    System.out.println("Ingrese el medio de transporte donde quiere agregar el Gorila de Montaña");
-                    int posii = sc.nextInt()-1;
-                     mediosdeTransportes.get(posii).getPrimates().add(new GorilaMontaña(iq, ares, c_comida, planeta, l_nacimiento, nombre, sanguineo, sexo, altura, peso));
-                    break;
-                case 3:
-                    System.exit(0);
-                default:
-            }
-        
-    }
-    
-    public void modificarIngeniero(){
-        int con = 1;
-         for (Ingeniero in : ingenieros) {
-                System.out.println(con + ")" + in);
-                con++;
-         }
-         System.out.println("Posicion a Modificar: ");
-         int posin = sc.nextInt() - 1;
-                if (posin>=0 && posin<ingenieros.size() && ingenieros.get(posin) instanceof Ingeniero) {
-                   System.out.println("Ingrese su nombre: ");
-                    String nombre = sc.next();
-                    ((Ingeniero)ingenieros.get(posin)).setNombre(nombre);
-                    System.out.println("Ingrese su grupo Sanguineo: ");
-                    String sanguineo = sc.next();
-                    ((Ingeniero)ingenieros.get(posin)).setGrupo_sanguineo(sanguineo);
-                    System.out.println("Ingrese su sexo: ");
-                    String sexo = sc.next();
-                    ((Ingeniero)ingenieros.get(posin)).setSexo(sexo);
-                    System.out.println("Ingrese su altura: ");
-                    String altura = sc.next();
-                    ((Ingeniero)ingenieros.get(posin)).setAltura(altura);
-                    System.out.println("Ingrese su peso: ");
-                    String peso = sc.next();
-                    ((Ingeniero)ingenieros.get(posin)).setPeso(peso);
-                    System.out.println("Ingrese correo: ");
-                    String correo = sc.next();
-                    ((Ingeniero)ingenieros.get(posin)).setCorreo(correo);
-                    System.out.println("Nombre de usuario: ");
-                    String usuario = sc.next();
-                    ((Ingeniero)ingenieros.get(posin)).setNombre_usuario(usuario);
-                    System.out.println("Ingrese su idioma: ");
-                    String idioma = sc.next();
-                    ((Ingeniero)ingenieros.get(posin)).setIdiomas(idioma);
-                    System.out.println("Ingrese su contraseña: ");
-                    String contraseña = sc.next();
-                    ((Ingeniero)ingenieros.get(posin)).setContraseña(contraseña);
-                    System.out.println("Ingrese la cantidad de Cafe: ");
-                    int c_c = sc.nextInt();
-                    ((Ingeniero)ingenieros.get(posin)).setCantidad_cafe(c_c);
-                    System.out.println("Fecha de nacimiento: ");
-                    String fecha_naciomiento = sc.next();
-                    ((Ingeniero)ingenieros.get(posin)).setFecha_naciomiento(fecha_naciomiento);
+        System.out.println(""
+                + "1. Agregar Mono Bobon\n"
+                + "2. Agregar Gorila de Montaña\n"
+                + "3. Salir"
+                + "Ingrese que desea registrar: ");
+        int op = sc.nextInt();
+        switch (op) {
+            case 1:
+                System.out.println("Ingrese su color");
+                String color = sc.next();
+                int cont = 1;
+                for (MediosdeTransporte mt : mediosdeTransportes) {
+                    System.out.println(cont + ")" + mt);
+                    cont++;
                 }
+                System.out.println("Ingrese el medio de transporte donde quiere agregar el Mono Babon");
+                int posi = sc.nextInt() - 1;
+                mediosdeTransportes.get(posi).getPrimates().add(new MonoBaboon(color, ares, c_comida, planeta, l_nacimiento, nombre, sanguineo, sexo, altura, peso));
+                break;
+            case 2:
+                System.out.println("Ingrese su IQ (130-139");
+                int iq = sc.nextInt();
+                while (iq < 130 || iq > 139) {
+                    System.out.println("Ingrese su IQ dentro del rango (130-139");
+                    iq = sc.nextInt();
+                }
+                int contt = 1;
+                for (MediosdeTransporte mt : mediosdeTransportes) {
+                    System.out.println(contt + ")" + mt);
+                    contt++;
+                }
+                System.out.println("Ingrese el medio de transporte donde quiere agregar el Gorila de Montaña");
+                int posii = sc.nextInt() - 1;
+                mediosdeTransportes.get(posii).getPrimates().add(new GorilaMontaña(iq, ares, c_comida, planeta, l_nacimiento, nombre, sanguineo, sexo, altura, peso));
+                break;
+            case 3:
+                System.exit(0);
+            default:
+        }
+
     }
+
+    public void eliminarPrimate() {
+        for (int i = 0; i < mediosdeTransportes.size(); i++) {
+            for (int j = 0; j < mediosdeTransportes.get(i).getPrimates().size(); j++) {
+                int coo = 1;
+                for (Primate pri : mediosdeTransportes.get(i).getPrimates()) {
+                    System.out.println(coo + ")" + pri);
+                    coo++;
+                }
+                System.out.println("Ingrese la posicion del primate que desea Eliminar");
+                int pp = sc.nextInt() - 1;
+
+                mediosdeTransportes.get(i).getPrimates().remove(pp);
+            }
+        }
+    }
+
+    public void modificarIngeniero() {
+        int con = 1;
+        for (Ingeniero in : ingenieros) {
+            System.out.println(con + ")" + in);
+            con++;
+        }
+        System.out.println("Posicion a Modificar: ");
+        int posin = sc.nextInt() - 1;
+        if (posin >= 0 && posin < ingenieros.size() && ingenieros.get(posin) instanceof Ingeniero) {
+            System.out.println("Ingrese su nombre: ");
+            String nombre = sc.next();
+            ((Ingeniero) ingenieros.get(posin)).setNombre(nombre);
+            System.out.println("Ingrese su grupo Sanguineo: ");
+            String sanguineo = sc.next();
+            ((Ingeniero) ingenieros.get(posin)).setGrupo_sanguineo(sanguineo);
+            System.out.println("Ingrese su sexo: ");
+            String sexo = sc.next();
+            ((Ingeniero) ingenieros.get(posin)).setSexo(sexo);
+            System.out.println("Ingrese su altura: ");
+            String altura = sc.next();
+            ((Ingeniero) ingenieros.get(posin)).setAltura(altura);
+            System.out.println("Ingrese su peso: ");
+            String peso = sc.next();
+            ((Ingeniero) ingenieros.get(posin)).setPeso(peso);
+            System.out.println("Ingrese correo: ");
+            String correo = sc.next();
+            ((Ingeniero) ingenieros.get(posin)).setCorreo(correo);
+            System.out.println("Nombre de usuario: ");
+            String usuario = sc.next();
+            ((Ingeniero) ingenieros.get(posin)).setNombre_usuario(usuario);
+            System.out.println("Ingrese su idioma: ");
+            String idioma = sc.next();
+            ((Ingeniero) ingenieros.get(posin)).setIdiomas(idioma);
+            System.out.println("Ingrese su contraseña: ");
+            String contraseña = sc.next();
+            ((Ingeniero) ingenieros.get(posin)).setContraseña(contraseña);
+            System.out.println("Ingrese la cantidad de Cafe: ");
+            int c_c = sc.nextInt();
+            ((Ingeniero) ingenieros.get(posin)).setCantidad_cafe(c_c);
+            System.out.println("Fecha de nacimiento: ");
+            String fecha_naciomiento = sc.next();
+            ((Ingeniero) ingenieros.get(posin)).setFecha_naciomiento(fecha_naciomiento);
+        }
+    }
+
     public void modificarPrimate() {
         for (int i = 0; i < mediosdeTransportes.size(); i++) {
             for (int j = 0; j < mediosdeTransportes.get(i).getPrimates().size(); j++) {
@@ -955,6 +623,5 @@ public class Lab4_Leonardo_Fabio {
             }
         }
     }//fin modificar primate
-    
 
 }

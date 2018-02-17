@@ -1,7 +1,7 @@
-
 package lab4_leonardo_fabio;
 
 public class SeresVivos {
+
     private String nombre;
     private String grupo_sanguineo;
     private String sexo;
@@ -63,6 +63,12 @@ public class SeresVivos {
     public String toString() {
         return "SeresVivos{" + "nombre=" + nombre + ", grupo_sanguineo=" + grupo_sanguineo + ", sexo=" + sexo + ", altura=" + altura + ", peso=" + peso + '}';
     }
-    
-    
+
+    public double LlenarComida() {
+        return 0;
+    }
+
+    public void llenarCafe() {
+        
+    }
 }
